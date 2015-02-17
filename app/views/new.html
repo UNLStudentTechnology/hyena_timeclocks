@@ -1,0 +1,19 @@
+<unl-toolbar>
+	<a ng-click="go('/{{groupId}}', 'animate-slide-left')" title="Back to Assets"><unl-icon-button icon="arrow-back"></unl-icon-button></a>
+	<span flex class="align-center">{{ timeclock.title || 'New Timeclock' }}</span>
+</unl-toolbar>
+<div class="content-container">
+	<!-- Timeclock Settings -->
+	<form name="newTimeclockForm" ng-submit="createTimeclock()">
+		<unl-list-group>
+			<unl-list-item-header>General</unl-list-item-header>
+			<unl-list-item-label heading="Title">
+				<div class="tools">
+					<input required type="text" name="timeclock-title" ng-model="timeclock.title">
+				</div>
+			</unl-list-item-label>
+		</unl-list-group>
+		<button type="submit" ng-disabled="newTimeclockForm.$invalid">Create Timeclock</button>
+	</form>
+	<!-- End Timeclock Settings -->
+</div>
