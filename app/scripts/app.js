@@ -44,6 +44,15 @@ angular
       });
     $locationProvider.html5Mode(true);
   })
+  .config(function ($httpProvider) {
+    //$httpProvider.defaults.withCredentials = true;
+    $httpProvider.interceptors.push([
+      '$injector',
+      function ($injector) {
+        return $injector.get('AuthInterceptor');
+      }
+    ]);
+  })
   .constant('FBURL', 'https://hyena-timeclocks.firebaseio.com/')
   .constant('APIKEY', 'OWMyOGU3ZjQ1MTVjYmNkNGQ3NDlmY2Iz')
   .constant('APIPATH', 'http://st-studio.unl.edu/hyena_platform/public/api/1.0/')
