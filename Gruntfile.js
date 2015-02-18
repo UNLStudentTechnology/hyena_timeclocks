@@ -251,6 +251,9 @@ module.exports = function (grunt) {
         blockReplacements: {
           css: function (block) {
             return '<link rel="stylesheet" href="' + block.dest + '" shim-shadowdom>';
+          },
+          elements: function (block) {
+            return '<link rel="import" href="' + block.dest + '">';
           }
         }
       }
