@@ -9,6 +9,7 @@
  */
 angular.module('hyenaTimeclocksApp')
   .controller('TimeclockCtrl', function ($scope, $rootScope, $routeParams, TimeclockService) {
+    $scope.kioskMode = false;
     //Get and set the current group ID
   	var groupId = $routeParams.groupId;
   	$scope.groupId = $rootScope.currentGroupId = groupId;
@@ -18,4 +19,17 @@ angular.module('hyenaTimeclocksApp')
   	//Get timeclock
   	var timeclock = TimeclockService.get(timeclockId).$asObject();
   	timeclock.$bindTo($scope, 'timeclock');
+
+    /**
+     * Toggles kiosk mode, an interface for direct customer use.
+     */
+    $scope.showKioskMode = function() {
+      $scope.hideMainDrawer();
+      $scope.kioskMode = true;
+    };
+
+    $scope.hideKioskMode = function() {
+      $scope.showMainDrawer();
+      $scope.kioskMode = false;
+    };
   });
