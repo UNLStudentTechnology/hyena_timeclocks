@@ -1,0 +1,56 @@
+unl-list-item-label {
+	& /deep/ .tools {
+		.layout-horizontal();
+		.layout-center();
+		position: relative;
+		z-index: 99;
+
+		& unl-icon-button {
+			height: 32px;
+			margin: -10px 0;
+			padding: 4px 4px;
+			position: relative;
+			top: 1px;
+		}
+
+		& span {
+			color: @muted;
+			margin-right: 10px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+
+		@media (max-width: @breakpointPhone) {
+			max-width: 100%;
+			//width: 100%;
+
+			& input {
+				margin: 8px 0 5px;
+			}
+		}
+	}
+
+	& .show-on-hover {
+		opacity: 0;
+		right: -20px;
+		visibility: hidden;
+		.transition(0.5s @easing-swift-out);
+
+		@media (max-width: @breakpointTablet) {
+			opacity: 1;
+			right: 0;
+			visibility: visible;
+		}
+	}
+
+	&:hover {
+		& .show-on-hover {
+			opacity: 1;
+			right: 0;
+			visibility: visible;
+			.transition(0.5s @easing-swift-out);
+		}
+	}
+}

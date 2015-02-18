@@ -1,0 +1,131 @@
+// ============
+// MODULAR TYPE
+// ============
+// VERSION: 1.1
+// ============
+
+// Part of an effort to create a modular, lightweight CSS framework.
+
+// Type in the Chipped Beef framework is built to maintain a vertical rhythm. 
+// Of course, it's very hard to maintain that rhythm in complex websites, but the
+// default type settings should keep standard type in rhythm.
+
+/* Base Typography */
+// @import "font-gotham";
+// @import "font-wdn";
+
+/* WDN Fonts */
+.base-font() {
+    font-family: "Mercury SSm A", "Mercury SSm B", Georgia, Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.display-font() {
+    font-family: "Mercury Display A", "Mercury Display B", Georgia, Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.brand-font() {
+    font-family: "Tungsten A", "Tungsten B", "HelveticaNeueCondensed", "HelveticaNeue-Condensed", "Helvetica Neue Condensed", "HelveticaNeueRomanCondensed", "HelveticaNeue-Roman-Condensed", "Helvetica Neue Roman Condensed", "Arial Narrow", "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.heading-font() {
+    font-family: "Tungsten A", "Tungsten B", Impact, Haettenschweiler, "Arial Narrow Bold", "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.sans-serif-font() {
+    font-family: "Gotham SSm A", "Gotham SSm B", Verdana, "Verdana Ref", Geneva, Tahoma, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+// Font Families
+@headerFontFamily: "Tungsten A", "Tungsten B", sans-serif;
+@bodyFontFamily:   "gotham", "Helvetica Neue", sans-serif; //'Montserrat', sans-serif or 'Roboto', sans-serif
+@subHeadFontFamily: "Gotham SSm A", "Gotham SSm B", Verdana, "Verdana Ref", Geneva, Tahoma, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", sans-serif;
+
+// Type Scale
+@ratio:         1.618;          //Default is golden ratio: 1.618
+@baseFontSize:  1.8rem;         //Go crazy, kid
+@lineHeight:    2.5rem;         //Should be >= to @baseFontSize
+
+html {
+    font-size: 62.5%;
+}
+
+body, .body-font {
+    font-family: @bodyFontFamily;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 25px;
+    text-rendering: optimizeLegibility;
+    -webkit-text-rendering: optimizeLegibility;
+}
+
+body {
+    & /deep/ h1, & /deep/ h2, & /deep/ h3, & /deep/ h4, & /deep/ h5 {
+        font-family: @headerFontFamily;
+        font-weight: 400;
+        margin-top: 0;
+        margin-bottom: @lineHeight;
+    }
+
+    & /deep/ h1 { 
+        font-size: round(@baseFontSize*@ratio*@ratio*@ratio);
+        line-height: @lineHeight*3;
+    }
+
+    & /deep/ h2 {
+        font-size: round(@baseFontSize*@ratio*@ratio);
+        line-height: @lineHeight*3;
+    }
+
+    & /deep/ h3 {
+        font-size: 4rem;
+        line-height: @lineHeight*2;
+    }
+
+    & /deep/ h4 {
+        font-size: 2.8rem;
+        font-weight: 500;
+        line-height: @lineHeight;
+        margin-bottom: 0.5rem;
+    }
+}
+
+h4 span {
+    font-weight: 300;
+}
+
+p, ul, ol {
+    margin-top: 0rem;
+    margin-bottom: @lineHeight;
+}
+
+p {
+    //.base-font();
+}
+
+small, aside {
+    font-size: round(@baseFontSize/@ratio);
+}
+
+.fa.fa-large {
+    font-size: @lineHeight;
+}
+
+/*
+KEEPING IT RESPONSIVE, YO
+=========================
+ */
+
+/* Phones */
+@media only screen and (max-width: 480px) {
+    html { font-size: 45%;}
+}

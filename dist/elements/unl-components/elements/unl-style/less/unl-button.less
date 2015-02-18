@@ -1,0 +1,49 @@
+button {
+	background-color: @tertiary;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	outline: none;
+	padding: @lineHeight/2;
+
+	&:hover {
+		background-color: darken(@tertiary, 5%);
+	}
+
+	&.button-brand {
+		background-color: @brand;
+
+		&:hover {
+			background-color: darken(@brand, 5%);
+		}
+	}
+
+	&.button-error {
+		background-color: @error;
+
+		&:hover {
+			background-color: darken(@error, 5%);
+		}
+	}
+
+	&.button-success {
+		background-color: @success;
+
+		&:hover {
+			background-color: darken(@success, 5%);
+		}
+	}
+
+	&.button-secondary {
+		background-color: @muted;
+
+		&:hover {
+			background-color: darken(@muted, 5%);
+		}
+	}
+
+	&[disabled] {
+    	cursor: not-allowed;
+    }
+}

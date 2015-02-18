@@ -1,0 +1,24 @@
+unl-list-item-user {
+	& /deep/ .user-avatar {
+		float: left;
+
+		& img {
+			border-radius: 50%;	
+			display: block;
+			margin-left: 0px;
+			margin-right: 8px;
+			.img-small();
+		}
+
+		&.right img {
+			margin-left: 8px;
+			margin-right: 0px;
+		}
+	}
+
+	& /deep/ .user-detail {
+		margin-top: 3px;
+	}
+
+	.clearfix();
+}

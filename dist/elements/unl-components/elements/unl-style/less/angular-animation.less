@@ -1,0 +1,148 @@
+// =============
+// ANGULAR JS ANIMATIONS
+// =============
+// VERSION: 1.0
+// ============
+// 
+// These are animations for use with Angular's ngAnimate module.
+
+/* Easing */
+@easing-swift-out: cubic-bezier(.55,0,.1,1);
+
+.animate-default {
+	position: relative;
+	.animation(.5s @easing-swift-out);
+}
+
+.animate-page {
+  box-sizing: border-box;
+	position: absolute;
+  width: ~"calc(100% - 270px)";
+  width: ~"-webkit-calc(100% - 270px)";
+  width: ~"-moz-calc(100% - 270px)";
+	.animation(1s @easing-swift-out);
+
+  @media (max-width: @breakpointTablet) {
+    width: 100%;
+  }
+}
+
+/* Fade Left */
+.animate-fade-left.ng-enter {
+	.animate-default();
+	.animation-name(fade-left-in);
+}
+
+.animate-fade-left.ng-leave {
+	.animate-default();
+	.animation-name(fade-left-out);
+}
+
+@-webkit-keyframes fade-left-in {
+  from { left: -20px; opacity:0; }
+  to { left: 0; opacity:1; }
+}
+@keyframes fade-left-in {
+  from { left: -20px; opacity:0; }
+  to { left: 0; opacity:1; }
+}
+
+@-webkit-keyframes fade-left-out {
+  from { left: 0; opacity:1; }
+  to { left: -20px; opacity:0; }
+}
+@keyframes fade-left-out {
+  from { left: 0; opacity:1; }
+  to { left: -20px; opacity:0; }
+}
+/* End Fade Left */
+
+/* Fade Right */
+.animate-fade-right.ng-enter {
+	.animate-default();
+	.animation-name(fade-right-in);
+}
+
+.animate-fade-right.ng-leave {
+	.animate-default();
+	.animation-name(fade-right-out);
+}
+
+@-webkit-keyframes fade-right-in {
+  from { right: -20px; opacity:0; }
+  to { right: 0; opacity:1; }
+}
+@keyframes fade-right-in {
+  from { right: -20px; opacity:0; }
+  to { right: 0; opacity:1; }
+}
+
+@-webkit-keyframes fade-right-out {
+  from { right: 0; opacity:1; }
+  to { right: -20px; opacity:0; }
+}
+@keyframes fade-right-out {
+  from { right: 0; opacity:1; }
+  to { right: -20px; opacity:0; }
+}
+/* End Fade Right */
+
+/* Slide right */
+.animate-slide-right.ng-enter {
+  	.animate-page();
+  	.animation-name(slide-right-in);
+}
+
+.animate-slide-right.ng-leave {
+	.animate-page();
+  	.animation-name(slide-right-out);
+}
+
+@-webkit-keyframes slide-right-in {
+  from { .transform(translateX(100%)) }
+  to { .transform(translateX(0%)) }
+}
+@keyframes slide-right-in {
+  from { .transform(translateX(100%)) }
+  to { .transform(translateX(0%)) }
+}
+
+@-webkit-keyframes slide-right-out {
+  from { }
+  to { .transform(translateX(-100%)) }
+}
+@keyframes slide-right-out {
+  from { }
+  to { .transform(translateX(-100%)) }
+}
+/* End slide right */
+
+/* Slide left */
+.animate-slide-left.ng-enter {
+  	.animate-page();
+  	.animation-name(slide-left-in);
+}
+
+.animate-slide-left.ng-leave {
+	.animate-page();
+  	.animation-name(slide-left-out);
+}
+
+@-webkit-keyframes slide-left-in {
+  from { .transform(translateX(-100%)) }
+  to { .transform(translateX(0%)) }
+}
+@keyframes slide-left-in {
+  from { .transform(translateX(-100%)) }
+  to { .transform(translateX(0%)) }
+}
+
+@-webkit-keyframes slide-left-out {
+  from { }
+  to { .transform(translateX(100%)) }
+}
+@keyframes slide-left-out {
+  from { }
+  to { .transform(translateX(100%)) }
+}
+/* End slide left */

@@ -1,0 +1,58 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Created by Hayden Gascoigne
+-->
+
+<polymer-element name="unl-list-item-user" attributes="user">
+  <template>
+    <li class="unl-list-item">     
+      <template if="{{user}}">
+        <div class="user-avatar"><img src="{{user.profile_image}}" alt="User Avatar" class="user-avatar-img"/></div>
+        <div class="user-detail">{{user.first_name}} {{user.last_name}}</div>
+      </template>
+      <template if="{{!user}}">
+        <div class="user-detail">Loading...</div>
+      </template>
+    </li>
+    <style>
+      :host {
+        display: block;
+        position: relative;
+        white-space: nowrap;
+      }
+
+      polyfill-next-selector { content: ':host > a'; }
+      ::content > a{
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        /* IE10 styling to ensure link is clickable. Cannot be completely
+        transparent or minifiers change it to `transparent` which does not work. */
+        background-color: rgba(0, 0, 0, 0.000001);
+      }
+    </style>
+  </template>
+  <script>
+      Polymer('unl-list-item-user', {   
+        link: false,    
+        user: {},
+
+        userChanged: function() {
+            if(typeof this.user !== 'undefined' && this.user !== null)
+            {
+              try{
+                this.user = JSON.parse(this.user);
+              }
+              catch(error)
+              {
+                //console.warn('unl-list-item-user error:', 'Not Valid JSON');
+              }
+            }
+        }
+
+      });
+  </script>
+</polymer-element>

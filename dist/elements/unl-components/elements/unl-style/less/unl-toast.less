@@ -1,0 +1,104 @@
+/*
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+unl-toast {
+  background: @dark;
+  border-radius: @borderRadius;
+  bottom: 12px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 5px 0 fade(#000, 25%);
+  color: #fff;
+  cursor: default;
+  display: inline-block;
+  left: 12px;
+  min-height: 48px;
+  min-width: 288px;
+  padding: @lineHeight/2 20px;
+  -moz-box-sizing: border-box;
+  z-index: 99;
+
+  &.error,
+  &.success,
+  &.warning,
+  &.info {
+    color: #fff;
+  }
+
+  &.error {
+    background: @error;
+  }
+
+  &.success {
+    background: @success;
+  }
+
+  &.warning {
+    background: @warning;
+  }
+
+  &.info {
+    background: @info;
+  }
+
+  &.capsule {
+    border-radius: 24px;
+  }
+
+  &.fit-bottom {
+    border-radius: 0;
+    bottom: 0;
+    left: 0;
+    min-width: 0;
+    padding: 14px 15px 12px;
+    width: 100%;
+  }
+
+  &.core-transition.dragging {
+    transition: none;
+  }
+
+  &.core-transition.fade-out-down,
+  &.core-transition.fade-out-up,
+  &.core-transition.fade-out-right,
+  &.core-transition.fade-out-left {
+    opacity: 0;
+    transition: -webkit-transform 0.08s ease-in-out, opacity 0.08s ease-in-out;
+    transition: transform 0.08s ease-in-out, opacity 0.08s ease-in-out;
+  }
+
+  &.core-transition.fade-out-down {
+    -webkit-transform: translate(0, 100%);
+    transform: translate(0, 100%);
+  }
+
+  &.core-transition.fade-out-up {
+    -webkit-transform: translate(0, -100%);
+    transform: translate(0, -100%);
+  }
+
+  &.core-transition.fade-out-right {
+    -webkit-transform: translate(100%, 0);
+    transform: translate(100%, 0);
+  }
+
+  &.core-transition.fade-out-left {
+    -webkit-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
+  }
+}
+
+.toast-container {
+  overflow: hidden;
+}
+
+.toast-action {
+  padding-left: 24px;
+  cursor: pointer;
+  text-transform: uppercase;
+}

@@ -1,0 +1,71 @@
+@unl-layout-drawer-padding: 5px @lineHeight/2;
+@unl-layout-bg-color: #fff;
+
+unl-layout {
+	box-shadow: 0px 0px 3px fade(#000, 20%);
+	height: 100%;
+
+	& [main],
+	&::shadow #main,
+	& [drawer],
+	&::shadow #drawer {
+		background: @unl-layout-bg-color;
+	}
+
+	& [drawer]  {
+		background: @unl-layout-bg-color;
+
+			border-right: 1px solid @subtle;
+			height: 100%;
+			padding: 0;
+
+			& /deep/ .unl-list-item {
+				padding: @unl-layout-drawer-padding;
+
+				&.unl-list-item-link:hover,
+				&.unl-list-item-link.active,
+				&.active {
+					background: lighten(@subtle, 5%);
+				}
+			}
+
+			& unl-list-item-header {
+				padding: @unl-layout-drawer-padding;
+			}
+
+			& unl-list-item-user::shadow .unl-list-item {
+				padding: 9px @lineHeight/2;
+			}
+		
+	}
+
+	& [main] {
+		background: @unl-layout-bg-color;
+		overflow-y: auto;
+		overflow-x: hidden;
+
+		& #main-content {
+			height: 100%;
+			padding-top: 0;
+		}
+
+		& unl-toolbar:first-child {
+			background: @unl-layout-bg-color;
+			border-bottom: 1px solid @subtle;
+			color: @primaryTextColor;
+
+			& unl-icon-button {
+				color: @primaryTextColor;
+			}
+
+			& unl-drawer-toggle {
+				border-right-color: @subtle;
+			}
+		}
+	}
+
+	& /deep/ .content-container {
+		padding: @lineHeight;
+		position: relative;
+	}
+}

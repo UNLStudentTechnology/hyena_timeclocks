@@ -1,0 +1,212 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../unl-toolbar/unl-toolbar.html">
+
+<!--
+A responsive ui element that creates an app-like structure containing a drawer. The `unl-layout`
+element wraps two other elements, a `main` and  a `drawer` construct. Each defining where
+content will be layed out when rendering.
+
+
+##Responsive Breakpoints
+`unl-layout` is currently built using the following breakpoints.
+
+<pre>
+    <code>
+         0        480px         720px        944px        1264px    1920px
+         ├─────────┼─────────────┼─────────────┼───────────┼─────────┼─────────>
+         ·  phone  ·   phablet   ·   tablet    ·  desktop  ·   hd    ·
+    </code>
+</pre>
+
+
+## Using the element
+When defining the main container use the attribute `main` to indicate the element's construct.
+
+Example:
+
+    <unl-layout>
+        <div main>
+            ....
+        </div>
+    </unl-layout>
+
+When defining the drawer use the attribute `drawer` to indicate the element's construct.
+By default the drawer will be positioned to the left and given a type of slide.
+
+Example:
+
+    <unl-layout>
+        <div drawer>
+            ....
+        </div>
+    </unl-layout>
+
+You can indicate a attribute of `left` or `right` to define a drawer's position.
+Omission of these position attributes will default the drawer to be positioned on the left.
+
+Example:
+
+    <unl-layout>
+        <div drawer right>
+            ....
+        </div>
+        <div main>
+            ....
+        </div>
+    </unl-layout>
+
+You can indicate a attribute of `pan`, `parallax`, `reveal` or `slide` to define a drawer's type.
+Omission of these type attributes will default the drawer to use the 'slide' type.
+
+Example:
+
+    <unl-layout>
+        <div drawer pan>
+            ....
+        </div>
+        <div main>
+            ....
+        </div>
+    </unl-layout>
+
+A layout defining a drawer that is positioned to the right with a type of parallax.
+
+Example:
+
+    <unl-layout>
+        <div drawer right parallax>
+            ....
+        </div>
+        <div main>
+            ....
+        </div>
+    </unl-layout>
+
+@element unl-layout
+@blurb Web component which allows for easy app drawer creation
+@status alpha
+@homepage http://filaraujo.github.io/unl-layout
+@demo http://filaraujo.github.io/unl.io/layout.html
+-->
+
+<polymer-element name="unl-layout" constructor="UiLayout" horizontal layout fit>
+    <template>
+        <link rel="stylesheet" href="unl-layout.css" />
+
+        <div id="drawer" open?="{{isDrawerOpen}}" hidden?="{{hideDrawer}}" vertical layout role="navigation">
+            <unl-toolbar id="brand-toolbar" role="banner">
+               <span flex>University of Nebraska-Lincoln</span>
+            </unl-toolbar>
+            <content select="[drawer]" id="drawerContent"></content>
+        </div>
+
+        <div id="main" role="main" vertical layout>
+            <div id="overlay" on-tap="{{closeDrawer}}"></div>
+            <content select="[main]"></content>
+        </div>
+
+    </template>
+    <script>
+        (function(){
+            var drawerTypes = ['parallax', 'pan', 'reveal', 'slide'],
+
+                authors = ['Filipe Araujo'];
+
+
+            Polymer('unl-layout', {
+
+                publish: {
+                    hideDrawer: false,
+                    /**
+                    * `isDrawerOpen` indicates whether a drawer is open.
+                    *
+                    * @property isDrawerOpen
+                    * @type bool
+                    * @default false
+                    */
+                    isDrawerOpen: false,
+                },
+
+                /**
+                * The `author` attribute defines the initial author, setting
+                * this value will add another author
+                *
+                * @attribute author
+                * @type string
+                * @default 'Filipe Araujo'
+                */
+                set author(name){
+                    if(authors.indexOf(name) > 0){
+                        return;
+                    }
+                    authors.push(name);
+                },
+
+                get author(){
+                    return authors;
+                },
+
+                /**
+                * lifecycle event
+                */
+                attached: function(){
+                    var node = this.$.drawerContent.getDistributedNodes()[0],
+
+                        // filter out which type of drawer is declared
+                        types;
+
+                    types = drawerTypes.filter(function(type){
+                        return node && node.hasAttribute(type);
+                    });
+
+                    if(!node){
+                        return false;
+                    }
+
+                    // set which side drawer is on
+                    this.$.drawer.setAttribute(node.hasAttribute('right') ? 'right' : 'left', '');
+
+                    // set which type of drawer to use
+                    this.$.drawer.setAttribute(types[0] || 'parallax','');
+                },
+
+                /**
+                * The `closeDrawer` method will close the drawer
+                *
+                * @method closeDrawer
+                */
+                closeDrawer: function(){
+                    this.isDrawerOpen = false;
+                },
+
+                /**
+                * The `openDrawer` method will open the drawer
+                *
+                * @method openDrawer
+                */
+                openDrawer: function(){
+                    this.isDrawerOpen = false;
+                },
+
+                /**
+                * The `toggleDrawer` method will open and close the drawer
+                *
+                * @method toggleDrawer
+                */
+                toggleDrawer: function(){
+                    this.isDrawerOpen = !this.isDrawerOpen;
+                },
+
+                forceHideDrawer: function(){
+                    this.isDrawerOpen = false;
+                    this.hideDrawer = true;
+                },
+
+                forceShowDrawer: function(){
+                    //this.isDrawerOpen = true;
+                    this.hideDrawer = false;
+                }
+            });
+        }());
+    </script>
+</polymer-element>

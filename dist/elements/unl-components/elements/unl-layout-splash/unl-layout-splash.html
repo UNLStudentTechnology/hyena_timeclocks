@@ -1,0 +1,18 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Created by Hayden Gascoigne
+-->
+
+<polymer-element name="unl-layout-splash" fit vertical layout noscript>
+  <template>
+    <div id="loading-content" class="align-center" flex horizontal layout center center-justified>
+      <content select="[heading]"></content>
+    </div>
+    <footer self-end horizontal layout>
+      <div flex><content select="[left]"></content></div>
+      <div flex class="align-center"><content select="[center]"></content></div>
+      <div flex class="align-right"><content select="[right]"></content></div>
+    </footer>
+  </template>
+</polymer-element>

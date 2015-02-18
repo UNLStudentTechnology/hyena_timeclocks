@@ -1,0 +1,64 @@
+unl-list-group {
+	& /deep/ ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;	
+	}
+
+	& /deep/ .unl-list-item {
+		border-bottom: 1px solid @subtle;
+		padding: @lineHeight/2 0;
+		position: relative;
+
+		&.unl-list-item-link {
+			&:hover {
+				background-image: linear-gradient(to right, #fff 0%, fade(@subtle, 30%) 20%, fade(@subtle, 30%) 80%, #fff 100%);
+			}
+		}
+
+
+		& .heading {
+
+		}
+
+		& .label {
+			.muted();
+			.small();
+		}
+
+		& .content {
+			margin-right: 8px;
+			width: 55%; //Should be min-width, but Safari is a POS and has a bug that doesn't render min-width correctly
+			flex:1 0 auto; //Shouldn't need this. See above comment.
+			-webkit-flex:1 0 auto;
+		}
+
+		& .list-item-image {
+			.img-medium();
+			margin-right: 8px;
+			margin-bottom: 0;
+
+			& img {
+				.img-responsive();
+			}
+
+			&.rounded img {
+				border-radius: 50%;
+			}
+		}
+
+		& > a {
+			position: absolute;
+	        top: 0;
+	        right: 0;
+	        bottom: 0;
+	        left: 0;
+	        z-index: 3;
+	        /* IE10 styling to ensure link is clickable. Cannot be completely
+	        transparent or minifiers change it to `transparent` which does not work. */
+	        background-color: rgba(0, 0, 0, 0.000001);
+		}
+
+		.clearfix();
+	}
+}

@@ -1,0 +1,26 @@
+.transition (@string: all 1s ease-in-out) {
+  /* transition *///
+  -webkit-transition: @string;
+     -moz-transition: @string;
+       -o-transition: @string;
+          transition: @string;
+}
+
+.transform (@string: 1s ease-in-out) {
+	-webkit-transform: @string;
+	   -moz-transform: @string;
+	    -ms-transform: @string;
+		    transform: @string;
+}
+
+.animation (@string: 1s ease-in-out) {
+	-webkit-animation: @string;
+	   -moz-animation: @string;
+		    animation: @string;
+}
+
+.animation-name (@string: default-animation) {
+	-webkit-animation-name: @string;
+	   -moz-animation-name: @string;
+		    animation-name: @string;
+}

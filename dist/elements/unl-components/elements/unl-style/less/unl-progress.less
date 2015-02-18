@@ -1,0 +1,29 @@
+unl-progress {
+
+	display: block;
+	height: 8px;
+	width: 100%;
+
+	&::shadow #progressContainer {
+		position: relative;
+		height: 100%;
+		background: lighten(@subtle, 2%);
+	}
+
+	&::shadow #activeProgress, 
+	&::shadow #secondaryProgress {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+	}
+
+	&::shadow #activeProgress {
+		background: @brand;
+	}
+
+	&::shadow #secondaryProgress {
+		background: #87ceac;
+	}
+
+}

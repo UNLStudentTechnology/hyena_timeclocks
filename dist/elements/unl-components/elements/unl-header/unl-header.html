@@ -1,0 +1,42 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Created by Hayden Gascoigne
+-->
+
+<polymer-element name="unl-header" attributes="">
+  <template>
+    <div id="unl-header-content" horizontal layout>
+      <div id="unl-header-content-inner" horizontal layout>
+        <div flex>
+          <span>University of Nebraska-Lincoln</span>
+        </div>
+        <div flex horizontal end-justified layout>
+          <span><content></content></span>
+        </div>
+      </div>
+    </div>
+    <div id="unl-header-logo">
+      <ul id="unl-header-social">
+        <li><a href="https://www.facebook.com/UNLincoln" class="wdn-icon-facebook-circled">Facebook</a></li>
+        <li><a href="https://twitter.com/UNLincoln" class="wdn-icon-twitter-circled">Twitter</a></li>
+      </ul>
+    </div> 
+
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+  </template>
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        // define element prototype here
+      });
+
+    })();
+  </script>
+</polymer-element>

@@ -1,0 +1,162 @@
+// =============
+// MAIN CSS FILE
+// =============
+// VERSION: 1.0
+// ============
+
+// Part of an effort to create a modular, lightweight CSS framework.
+
+/*
+Title: UNL Polymer App CSS Framework
+Website CSS Version: 4.1
+Website URL: http://unl-hyena.herokuapp.com
+*/
+
+
+// LESS VARIABLES (Others can be found inside of other modules)
+// =========
+
+@backgroundColor: 	#D5D5D2; //#EAECEE
+@primaryTextColor: 	#595855;
+@brand:			 	#D00000;
+@tertiary:			#137CBD;
+@muted:				#A0A1A3;
+@subtle:			#E7E8EA; //#EAE9E6
+
+@cream:				#FEFDFA; //#FEFDFA
+@dark:				#595855;
+@darkAlt:			#454542;
+
+@error:				#CC0000;
+@success:			#2ECC71;
+@warning: 			#F1C40F;
+@info:				#137CBD;
+
+@borderRadius:		3px;
+@headerHeight:		55px;
+
+@breakpointPhone: 	719px;
+@breakpointTablet: 	943px;
+
+
+// SELECTED MODULES
+// ================
+// If you don't want to use a certain feature, just comment it out. Hooray for lightweight stylesheets!
+
+@import "normalize"; //Probably shouldn't remove this one.
+@import "mixins";
+@import "helper";
+@import "type";
+@import "grid";
+@import "flex";
+@import "angular-animation";
+@import "nprogress";
+@import "form";
+@import "core-toolbar";
+@import "core-header-panel";
+@import "unl-button";
+@import "unl-toolbar";
+@import "unl-layout";
+@import "unl-user-profile";
+@import "unl-progress";
+@import "unl-header";
+@import "unl-list-group";
+@import "unl-list-item-label";
+@import "unl-list-item-user";
+@import "unl-list-item-header";
+@import "unl-input";
+@import "unl-toast";
+@import "unl-modal";
+@import "unl-icon-button";
+@import "unl-empty-content";
+@import "unl-radio-button";
+@import "unl-toggle-button";
+
+
+// GENERAL CSS RULES
+// =========================
+body {
+	background-color: @backgroundColor;
+	.n-background();
+	color: @primaryTextColor;
+}
+
+/* Angular Page */
+.angular-page {
+
+}
+
+#view-container {
+	position: relative;
+}
+
+/* Text Styles */
+sup {
+	font-size: 50%;
+	margin-left: 1px;
+	top: -1.3rem;
+}
+
+.muted {
+	color: @muted !important;
+}
+
+.small {
+	font-size: 70%;
+}
+
+/* Color States */
+.color-info {
+	color: @info !important;
+}
+
+.color-success {
+	color: @success !important;
+}
+
+.color-warning {
+	color: @warning !important;
+}
+
+.color-error {
+	color: @error !important;
+}
+
+/* Image Sizes */
+.img-small {
+	height: 32px;
+	width: 32px;
+}
+
+.img-medium {
+	height: 48px;
+	width: 48px;
+}
+
+.img-large {
+	height: 64px;
+	width: 64px;
+}
+
+/* Links */
+body /deep/ a {
+	color: @primaryTextColor;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+/* Remove Tap Highlight */
+body /deep/ a,
+body /deep/ button,
+unl-icon-button,
+unl-toggle-button,
+html /deep/ unl-radio-button {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+ 	-webkit-tap-highlight-color: transparent;
+}
+
+/* WDN Specific */
+.n-background {
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTQiIGhlaWdodD0iMzkiPjxyZWN0IHk9IjEzIiBmaWxsPSIjQ0VDRENCIiB3aWR0aD0iMSIgaGVpZ2h0PSIxMCIvPjxwYXRoIGQ9Ik03NyAxNWgtMTd2Nmg1djE0cy0xMy4yODMtMTcuODQ3LTE1LTIwaC0xMHY2aDR2MThoNnYtMTJsOS42IDEyaDExLjR2LTE4aDZsLS4wMTUuMDAxIDE2LjAxNS4wMTd2LTYuMDE4aC01di0xNGwxNiAyMGg5di02aC00di0xNWgtNnY5cy0zLjIzMS00LjM0Mi02LjcxMy05aC0xNC4yODd2MTVoLTV6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEwMSAwaC0yLjkzNGMuODggMS4zMDIgMS42ODYgMi40MzUgMi45MzQgNHYtNHoiIGZpbGw9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9Ijc1LDggNzUsMiA3MSwyIDcxLDAgNTkuNiwwIDY2LDgiIGZpbGw9Im5vbmUiLz48cmVjdCB4PSIxMTEiIHk9IjM2IiB3aWR0aD0iMyIgaGVpZ2h0PSIzIiBmaWxsPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSI5MCwxMyA5NC44ODEsMTMgOTAsNyIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0yMCAwaC03YzMuNTA4IDQuNzkyIDUuNTUzIDcuNzU4IDcgOS45MDh2LTkuOTA4eiIgZmlsbD0ibm9uZSIvPjxyZWN0IHg9IjExMSIgd2lkdGg9IjMiIGhlaWdodD0iMTMiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNjMgMjNoLTQuOTM4YzIuMDA3IDIuOTg2IDIuODYxIDQuMzk0IDQuOTM4IDd2LTd6IiBmaWxsPSJub25lIi8+PHBvbHlnb24gcG9pbnRzPSI5OCwzNCAxMDMsMzQgMTAzLDM5IDEwOSwzOSAxMDksMzQgMTE0LDM0IDExNCwyOCA5OCwyOCIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik05NSAxMy4xNDd2OS44NTNoLTIydjE2aDd2LTNoLTR2LTEwaDEzYzMuNTA4IDQuNzkyIDUuNTUzIDcuNzU4IDcgOS45MDh2LTkuOTA4aDE4di0zaC0xMWwtOC05Ljg1M3oiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTcgMjhoLTV2LTE0bDE2IDIwaDl2LTZoLTR2LTIwaDZsLS4wMTUuMDAxIDE2LjAxNS4wMTd2LTYuMDE4aC01di0yaC02djJoLTIydjZoNXYxNHMtMTMuMjgzLTE3Ljg0Ny0xNS0yMGgtMTB2Nmg0djIwaC02djZsMTcgLjAxOHYtNi4wMTh6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTk2LjA2MiAzNmwyLjAwNSAzaDIuOTMzdi0zaC00LjkzOHoiIGZpbGw9Im5vbmUiLz48cG9seWdvbiBwb2ludHM9IjE0LDIwIDE0LDI2IDE4Ljg4LDI2IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTc4IDI4djZoNHY1aDE0LjI4N2MtMy41NzYtNC43ODctNy40MTctOS45MDgtOC4yODctMTFoLTEweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik00MiAzOXYtMTZoLTR2LTEwaDEzYzMuNTA4IDQuNzkyIDUuNTUzIDcuNzU4IDcgOS45MDh2LTkuOTA4aDIydi0xM2gtM3YxMGgtMTJsLTgtOS44NTN2OS44NTNoLTIydjE2aDR2MTBoLTEybC04LTkuODU0djkuODU0aC0xOXYzaDQyeiIgZmlsbD0ibm9uZSIvPjxwb2x5Z29uIHBvaW50cz0iNTIsMzkgNTYuODgsMzkgNTIsMzMiIGZpbGw9Im5vbmUiLz48cmVjdCB5PSIxMCIgd2lkdGg9IjQiIGhlaWdodD0iMTYiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMjUgMTBoLTQuOTM4YzIuMDA3IDIuOTg1IDIuODYxIDQuMzk0IDQuOTM4IDd2LTd6IiBmaWxsPSJub25lIi8+PHBhdGggZmlsbD0iI0NFQ0RDQiIgZD0iTTYgOGgtNHYtNmgxMGMxLjcxNyAyLjE1MyAxNSAyMCAxNSAyMHYtMTRoLTV2LTZoMTZ2LTJoLTE4djkuOTA4Yy0xLjQ0Ny0yLjE1LTMuNDkyLTUuMTE2LTctOS45MDhoLTEzdjEwaDR2MTZoLTR2Mmg2di0yMHptMTkgMnY3Yy0yLjA3Ny0yLjYwNi0yLjkzMS00LjAxNS00LjkzOC03aDQuOTM4eiIvPjxwYXRoIGZpbGw9IiNDRUNEQ0IiIGQ9Ik0xOSAyNi4xNDZsOCA5Ljg1NGgxMnYtMTBoLTR2LTE2aDN2LTJoLTV2MjBoNHY2aC05bC0xNi0yMHYxNGg1djYuMDE4bC0xNy0uMDE4djJoMTl2LTkuODU0em0tNS0uMTQ2di02bDQuODggNmgtNC44OHoiLz48cG9seWdvbiBmaWxsPSIjMjMxRjIwIiBwb2ludHM9IjM5LDggMzgsOCAzOSw4LjAwMSIvPjxwYXRoIGQ9Ik00MiAzOSIgZmlsbD0ibm9uZSIvPjxwYXRoIGZpbGw9IiNDRUNEQ0IiIGQ9Ik00MCAyMXYtNmgxMGMxLjcxNyAyLjE1MyAxNSAyMCAxNSAyMHYtMTRoLTV2LTZoMTZ2LTJoLTE4djkuOTA4Yy0xLjQ0Ny0yLjE1LTMuNDkyLTUuMTE2LTctOS45MDhoLTEzdjEwaDR2MTZoMnYtMThoLTR6bTIzIDJ2N2MtMi4wNzctMi42MDYtMi45MzItNC4wMTQtNC45MzgtN2g0LjkzOHoiLz48cGF0aCBkPSJNNzMgMzkiIGZpbGw9Im5vbmUiLz48cG9seWdvbiBmaWxsPSIjMjMxRjIwIiBwb2ludHM9Ijc3LDIxIDc2LDIxIDc3LDIxLjAwMSIvPjxwb2x5Z29uIGZpbGw9IiNDRUNEQ0IiIHBvaW50cz0iNTAsMzkgNTIsMzkgNTIsMzMgNTYuODgsMzkgNTcsMzkgNTkuNiwzOSA1MCwyNyIvPjxwb2x5Z29uIGZpbGw9IiNDRUNEQ0IiIHBvaW50cz0iNzYsMjMgNzYsMjEgNzEsMjEgNzEsMzkgNzMsMzkgNzMsMjMiLz48cG9seWdvbiBmaWxsPSIjQ0VDRENCIiBwb2ludHM9IjM5LDIgNDQsMiA0NCwwIDQyLDAgMzksMCAzOCwwIDM4LDIiLz48cG9seWdvbiBmaWxsPSIjQ0VDRENCIiBwb2ludHM9IjU1LDIgNTUsOC4wMTggMzksOCAzOCw4IDM4LDEwIDM5LDEwIDU3LDEwIDU3LDAuMTQ3IDY1LDEwIDc3LDEwIDc3LDAgNzMsMCA3MSwwIDcxLDIgNzUsMiA3NSw4IDY2LDggNTkuNiwwIDU3LDAgNTIsMCA1MCwwIDUwLDIiLz48cGF0aCBmaWxsPSIjQ0VDRENCIiBkPSJNOTYgMzUuOTA4Yy0xLjQ0Ny0yLjE1LTMuNDkyLTUuMTE2LTctOS45MDhoLTEzdjEwaDR2M2gydi01aC00di02aDEwYy44NyAxLjA5MiA0LjcxMSA2LjIxMyA4LjI4NyAxMWgxLjc3OWwtMi4wMDUtM2g0LjkzOXYzaDJ2LTVoLTV2LTZoMTZ2LTJoLTE4djkuOTA4eiIvPjxwb2x5Z29uIGZpbGw9IiNDRUNEQ0IiIHBvaW50cz0iMTA5LDM5IDExMSwzOSAxMTEsMzYgMTE0LDM2IDExNCwzNCAxMDksMzQiLz48cGF0aCBmaWxsPSIjQ0VDRENCIiBkPSJNMTAzIDBoLTJ2NGMtMS4yNDgtMS41NjUtMi4wNTQtMi42OTgtMi45MzQtNGgtMS43NzljMy40ODIgNC42NTggNi43MTMgOSA2LjcxMyA5di05eiIvPjxwb2x5Z29uIGZpbGw9IiNDRUNEQ0IiIHBvaW50cz0iNzcsMTMgNzYsMTMgNzYsMTUgNzcsMTUgODIsMTUgODIsMCA4MCwwIDgwLDEzIi8+PHBhdGggZmlsbD0iI0NFQ0RDQiIgZD0iTTExMyAxNXY2aC05bC0xNi0yMHYxNGg1djYuMDE4bC0xNi0uMDE4aC0xdjJoMTl2LTkuODUzbDggOS44NTNoMTF2LTEwaC0zdi0xM2gtMnYxNWg0em0tMjMtMnYtNmw0Ljg4MSA2aC00Ljg4MXoiLz48L3N2Zz4=);
+	background-repeat: repeat;
+}

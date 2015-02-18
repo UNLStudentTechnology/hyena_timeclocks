@@ -1,0 +1,33 @@
+{
+  "name": "unl-components",
+  "version": "0.1.1",
+  "homepage": "https://github.com/UNLStudentTechnology/",
+  "authors": [
+    "Hayden Gascoigne <haydengascoigne@gmail.com>"
+  ],
+  "description": "Polymer components for building web apps at UNL.",
+  "main": "dist/unl-components.html",
+  "keywords": [
+    "unl",
+    "components",
+    "polymer",
+    "student",
+    "technology",
+    "hyena"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "webcomponentsjs": "Polymer/webcomponentsjs#master",
+    "unl-style": "~0.1.0"
+  }, 
+  "devDependencies": {
+    "polymer-polymer": "~0.5.4"
+  }
+}

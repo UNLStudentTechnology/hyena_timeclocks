@@ -363,9 +363,9 @@ module.exports = function (grunt) {
           ]
         }, {
           expand: true, 
-          cwd: './',
-          dest: '<%= yeoman.dist %>',
-          src: ['bower_components/unl-components/**', '!**/node_modules/**'], 
+          cwd: './bower_components/unl-components',
+          dest: '<%= yeoman.dist %>/elements/unl-components/',
+          src: ['**', '!**/node_modules/**'], 
         }, {
           expand: true,
           cwd: '.tmp/images',

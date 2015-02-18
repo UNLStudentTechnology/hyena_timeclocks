@@ -1,0 +1,36 @@
+{
+  "name": "akyral-modal",
+  "version": "2.3.2",
+  "authors": [
+    "Filipe Araujo <filipe.alves.araujo@gmail.com>"
+  ],
+  "description": "A responsive modal element built on Polymer",
+  "keywords": [
+    "akyral",
+    "modal",
+    "modal",
+    "popup",
+    "polymer",
+    "web-components"
+  ],
+  "main": "akyral-modal.html",
+  "license": "MIT",
+  "homepage": "https://github.com/filaraujo/akyral-modal/",
+  "ignore": [
+    "**/.*",
+    "**/*.scss",
+    "node_modules",
+    "bower_components",
+    "../",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~0.5.1",
+    "core-a11y-keys": "polymer/core-a11y-keys#~0.5.1"
+  },
+  "devDependencies": {
+    "sinon": "http://sinonjs.org/releases/sinon-1.10.3.js",
+    "web-component-tester": "Polymer/web-component-tester#~1.1.2"
+  }
+}

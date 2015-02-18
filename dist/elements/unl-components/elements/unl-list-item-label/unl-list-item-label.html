@@ -1,0 +1,72 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Created by Hayden Gascoigne
+-->
+
+<polymer-element name="unl-list-item-label" attributes="heading label link image active user">
+  <template>
+    <li class="unl-list-item {{link ? 'unl-list-item-link' : ''}} {{active ? 'active' : ''}}" horizontal layout wrap>  
+      <template if="{{image}}">
+      <div class="list-item-image rounded">
+        <img src="{{image}}" alt="List Item Image"/>
+      </div>
+      </template>
+      <template if="{{!image && user}}">
+      <div class="list-item-image rounded placeholder">{{imagePlaceholder}}</div>
+      </template>
+      <div class="content" flex>   
+        <div class="heading">{{heading}}</div>
+        <template if="{{label}}">
+          <div class="label">{{label}}</div>
+        </template>
+      </div>
+      <content></content>
+    </li>
+    <style>
+      :host {
+        display: block;
+        position: relative;
+        /*white-space: nowrap;*/
+      }
+
+      polyfill-next-selector { content: ':host > a'; }
+      ::content > a{
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        /* IE10 styling to ensure link is clickable. Cannot be completely
+        transparent or minifiers change it to `transparent` which does not work. */
+        background-color: rgba(0, 0, 0, 0.000001);
+      }
+    </style>
+  </template>
+  <script>
+      (function(){
+        Polymer('unl-list-item-label', {
+          link: false,
+          active: false,
+          user: false,
+          image: null,
+          imagePlaceholder: 'HA',
+
+          /**
+           * If the user attribute is set, will check to see if they have a profile image,
+           * if not it will display their first and last initials.
+           * @return {[type]} [description]
+           */
+          imageChanged: function() {
+            if(!this.image)
+            {
+              //Split the heading (99% of the time is the user's name)
+              var userNames = this.heading.split(" ");
+              this.imagePlaceholder = (userNames[0].charAt(0) + userNames[1].charAt(0)).toUpperCase();
+            }
+          }
+
+        });
+      }());
+    </script>
+</polymer-element>

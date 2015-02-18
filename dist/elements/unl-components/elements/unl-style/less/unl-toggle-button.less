@@ -1,0 +1,70 @@
+/*
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+unl-toggle-button {
+  display: inline-block;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus {
+    outline: none;
+  }
+
+  & /deep/ #toggleContainer {
+    height: 16px;
+    position: relative;
+    width: 64px;
+
+    /* Disabled state */
+    &[disabled] {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    &[checked] #checkedBar {
+      width: 100%;
+    }
+
+    & #toggleBar {
+      background-color: @muted;
+      border-radius: 5px;
+      height: 10px;
+      left: 6px;
+      top: 3px;
+      pointer-events: none;
+      position: absolute;
+      width: 50px;
+
+      &[checked] {
+        background-color: @success;
+      }
+    }
+
+    & #toggleRadio {
+      position: absolute;
+      left: 0;
+      padding: 8px 48px 8px 0;
+      margin: -8px -48px -8px 0;
+      transition: -webkit-transform linear .08s;
+      transition: transform linear .08s;
+
+      &[checked] {
+        -webkit-transform: translate(48px, 0);
+        transform: translate(48px, 0);
+        padding: 8px 0 8px 48px;
+        margin: -8px 0 -8px -48px;
+      }
+
+      &.dragging {
+        -webkit-transition: none;
+        transition: none;
+      }
+    }
+  }
+}
