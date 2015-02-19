@@ -1,0 +1,14 @@
+<unl-toolbar>
+	<a ng-click="go('/{{groupId}}/timeclock/{{timeclockId}}', 'animate-slide-left')" title="Back to Timeclocks"><unl-icon-button icon="arrow-back"></unl-icon-button></a>
+	<unl-drawer-toggle ng-click="toggleMainDrawer()"></unl-drawer-toggle>
+	<span flex class="align-center">{{timeclock.title}}</span>
+</unl-toolbar>
+<div class="content-container">
+	<unl-list-group>
+		<unl-list-item-label heading="Title">
+			<div class="tools">
+				<input self-validation name="timeclock-title" type="text" model="timeclock.title" field="timeclock-title">
+			</div>
+		</unl-list-item-label>
+	</unl-list-group>
+</div>

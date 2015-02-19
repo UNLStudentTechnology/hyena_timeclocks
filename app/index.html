@@ -61,7 +61,7 @@
                     <!-- List groups -->
                     <unl-list-item-header><core-icon icon="social:group"></core-icon> My Groups</unl-list-item-header>
                     <unl-list-item-label ng-attr-active="{{group.id==currentGroupId}}" ng-repeat="group in currentUser.groups | orderBy:'title'" heading="{{group.title}}" link>
-                        <a ng-click="go('/{{group.id}}'); closeMainDrawer()"><paper-ripple fit></paper-ripple></a>
+                        <a ng-click="go('/{{group.id}}', 'animate-slide-left'); closeMainDrawer()"><paper-ripple fit></paper-ripple></a>
                     </unl-list-item-label>
                     <!-- End list groups -->
                     <!-- Authenticated user options -->
@@ -125,6 +125,7 @@
         <script src="scripts/services/timeclockservice.js"></script>
         <script src="scripts/controllers/new.js"></script>
         <script src="scripts/controllers/timeclock.js"></script>
+        <script src="scripts/controllers/settings.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -35,6 +35,10 @@ angular
         templateUrl: 'views/new.html',
         controller: 'NewCtrl'
       })
+      .when('/:groupId/timeclock/:timeclockId/settings', {
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl'
+      })
       .when('/:groupId/timeclock/:timeclockId', {
         templateUrl: 'views/timeclock.html',
         controller: 'TimeclockCtrl'

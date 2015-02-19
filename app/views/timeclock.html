@@ -2,7 +2,28 @@
 	<a ng-click="go('/{{groupId}}', 'animate-slide-left')" title="Back to Timeclocks"><unl-icon-button icon="arrow-back"></unl-icon-button></a>
 	<span flex class="align-center">{{ timeclock.title || 'Loading' }}</span>
 	<a ng-click="showKioskMode()" title="Enter Kiosk Mode"><unl-icon-button icon="fullscreen"></unl-icon-button></a>
+	<a ng-click="go('/{{groupId}}/timeclock/{{timeclockId}}/settings')" title="Settings"><unl-icon-button icon="settings"></unl-icon-button></a>
 </unl-toolbar>
+<div class="content-container">
+	<unl-list-group>
+		<unl-list-item-header>Active Clockins</unl-list-item-header>
+		<unl-empty-content text="No Active Clockins" ng-hide="active_clockins.length > 0"></unl-empty-content>
+		<unl-list-item-label class="animate-fade-left" user user-model="clockin.user" heading="{{ clockin.user.first_name ? clockin.user.first_name +' '+ clockin.user.last_name : clockin.user }}" image="{{clockin.user.profile_image}}" label="{{clockin.start_at | amCalendar}}" ng-repeat="clockin in active_clockins | orderBy:'start_at':true">
+			<div class="tools">
+				<unl-tooltip label="Clock Out" position="left"><unl-icon-button icon="alarm-off" ng-click="clockOutById(clockin.$id)"></unl-icon-button></unl-tooltip>
+			</div>
+		</unl-list-item-label>
+	</unl-list-group>
+	<unl-list-group>
+		<unl-list-item-header>Past Clockins</unl-list-item-header>
+		<unl-empty-content text="No Clockins" ng-hide="clockins.length > 0"></unl-empty-content>
+		<unl-list-item-label class="animate-fade-left" user user-model="clockin.user" heading="{{ clockin.user.first_name ? clockin.user.first_name +' '+ clockin.user.last_name : clockin.user }}" image="{{clockin.user.profile_image}}" label="From {{clockin.start_at | amCalendar}} until {{clockin.end_at | amCalendar}}" ng-repeat="clockin in clockins | orderBy:'end_at':true">
+			<div class="tools">
+				<span>{{ moment.duration(moment(clockin.end_at).diff(clockin.start_at)).humanize() }}</span>
+			</div>
+		</unl-list-item-label>
+	</unl-list-group>
+</div>
 <!-- Kiosk Mode -->
 <unl-layout-kiosk ng-show="kioskMode">
 	<div header>
@@ -15,7 +36,7 @@
 		<div class="icon-header">
 			<h2 class="align-center">Clock In <span class="subhead">Enter your NUID below</span></h2>
 		</div>
-		<form name="clockinForm" ng-submit="checkinUser()" novalidate>
+		<form name="clockinForm" ng-submit="clockInUser()" novalidate>
 			<div horizontal layout>
 				<label for="kiosk-nuid" hidden>Enter your NUID</label>
 				<input self-validation required model="clockinNcard" type="text" field="kiosk-nuid" placeholder="Enter your NUID" flex start>
