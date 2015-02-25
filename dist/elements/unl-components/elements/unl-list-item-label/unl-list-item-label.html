@@ -62,7 +62,10 @@ Created by Hayden Gascoigne
             {
               //Split the heading (99% of the time is the user's name)
               var userNames = this.heading.split(" ");
-              this.imagePlaceholder = (userNames[0].charAt(0) + userNames[1].charAt(0)).toUpperCase();
+              if(userNames.length < 2)
+                this.imagePlaceholder = this.heading.substr(0, 2).toUpperCase();
+              else
+                this.imagePlaceholder = (userNames[0].charAt(0) + userNames[1].charAt(0)).toUpperCase();
             }
           }
 

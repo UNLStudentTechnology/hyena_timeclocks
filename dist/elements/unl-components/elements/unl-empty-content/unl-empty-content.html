@@ -1,11 +1,42 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-icon/core-icon.html">
 
 <!--
 Created by Hayden Gascoigne
 -->
 
-<polymer-element name="unl-empty-content" attributes="text" noscript>
+<polymer-element name="unl-empty-content" attributes="text icon subhead" vertical layout center-justified fit>
   <template>
-    <p class="empty-content-label">{{text}}</p>
+  	<div class="empty-content-container">
+	  	<core-icon class="icon-xlarge" icon="{{icon}}" hidden?="{{!icon}}"></core-icon>
+	    <h2 class="empty-content-label">
+	    	{{text}}
+	    	<span class="subhead" hidden?="{{!hasSubheadContent}}">{{subhead}}<content id="c" select="[subhead]"></content></span>
+		</h2>
+    </div>
   </template>
+  <script>
+	Polymer('unl-empty-content', {
+		computed: {
+			hasSubheadContent: 'subhead || !!subheadEl'
+	    },
+
+		attached: function() {
+			this.updatedChildren();
+		},
+
+		updatedChildren: function () {
+			this.subheadEl = null;
+
+			for (var i = 0, el; el = this.$.c.getDistributedNodes()[i]; ++i) {
+				if (el.hasAttribute && el.hasAttribute('subhead')) {
+					this.subheadEl = el;
+					break;
+				}
+			}
+			// Monitor children to re-position tooltip when light dom changes.
+			this.onMutation(this, this.updatedChildren);
+		}
+	});
+	</script>
 </polymer-element>
