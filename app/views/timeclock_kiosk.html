@@ -1,0 +1,18 @@
+<div header>
+	{{timeclock.title}}
+</div>
+<div tools>
+	<a ng-click="go('/{{groupId}}/timeclock/{{timeclockId}}')" title="Leave Kiosk Mode"><unl-icon-button icon="fullscreen-exit"></unl-icon-button></a>
+</div>
+<div content>
+	<div class="icon-header">
+		<h2 class="align-center">Clock In <span class="subhead">Enter your NUID below</span></h2>
+	</div>
+	<form name="clockinForm" ng-submit="clockInUser()" novalidate>
+		<div horizontal layout>
+			<label for="kiosk-nuid" hidden>Enter your NUID</label>
+			<input self-validation required model="clockinNcard" type="text" field="kiosk-nuid" placeholder="Enter your NUID" flex start>
+			<button type="submit" ng-disabled="clockinForm.$invalid" input end>Clock In</button>
+		</div>
+	</form>
+</div>

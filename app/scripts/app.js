@@ -13,40 +13,58 @@ angular
     'ngAnimate',
     'ngCookies',
     'ngResource',
-    'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ui.router',
     'angularMoment',
     'hyenaAngular',
     'ngTagsInput',
     'ngStorage'
   ])
-  .config(function ($routeProvider, $locationProvider) {
-    $routeProvider
-      .when('/', {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    $stateProvider
+      //Layouts
+      .state('unl-layout', {
+        templateUrl: 'views/layouts/unl-layout.html',
+        data: {
+          requireAuth: true
+        }
+      })
+      .state('unl-layout-kiosk', {
+        templateUrl: 'views/layouts/unl-layout-kiosk.html'
+      })
+      //Views
+      .state('unl-layout.timeclocks', {
+        url: '/:groupId',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/:groupId', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/:groupId/timeclock/new', {
+      .state('unl-layout.timeclock_new', {
+        url: '/:groupId/timeclock/new',
         templateUrl: 'views/new.html',
         controller: 'NewCtrl'
       })
-      .when('/:groupId/timeclock/:timeclockId/settings', {
+      .state('unl-layout.timeclock_settings', {
+        url: '/:groupId/timeclock/:timeclockId/settings',
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
       })
-      .when('/:groupId/timeclock/:timeclockId', {
+      .state('unl-layout.timeclock_view', {
+        url: '/:groupId/timeclock/:timeclockId',
         templateUrl: 'views/timeclock.html',
         controller: 'TimeclockCtrl'
       })
-      .otherwise({
-        redirectTo: '/'
+      .state('unl-layout-kiosk.timeclock_kiosk', {
+        url: '/:groupId/timeclock/:timeclockId/kiosk',
+        templateUrl: 'views/timeclock_kiosk.html',
+        controller: 'TimeclockCtrl'
       });
-    $locationProvider.html5Mode(true);
+      //Default Route
+      $urlRouterProvider.otherwise("/");
+      //End Default Route
+      
+      //Remove # from URLs
+      $locationProvider.html5Mode(true);
   })
   .config(function ($httpProvider) {
     //$httpProvider.defaults.withCredentials = true;

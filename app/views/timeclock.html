@@ -1,7 +1,7 @@
 <unl-toolbar>
 	<a ng-click="go('/{{groupId}}', 'animate-slide-left')" title="Back to Timeclocks"><unl-icon-button icon="arrow-back"></unl-icon-button></a>
 	<span flex class="align-center">{{ timeclock.title || 'Loading' }}</span>
-	<a ng-click="showKioskMode()" title="Enter Kiosk Mode"><unl-icon-button icon="fullscreen"></unl-icon-button></a>
+	<a ng-click="go('/{{groupId}}/timeclock/{{timeclockId}}/kiosk')" title="Enter Kiosk Mode"><unl-icon-button icon="fullscreen"></unl-icon-button></a>
 	<a ng-click="go('/{{groupId}}/timeclock/{{timeclockId}}/settings')" title="Settings"><unl-icon-button icon="settings"></unl-icon-button></a>
 </unl-toolbar>
 <div class="content-container">
@@ -16,7 +16,7 @@
 	</unl-list-group>
 	<unl-list-group>
 		<unl-list-item-header>Past Clockins</unl-list-item-header>
-		<unl-empty-content text="No Clockins" ng-hide="clockins.length > 0"></unl-empty-content>
+		<unl-empty-content text="No Past Clockins" ng-hide="clockins.length > 0"></unl-empty-content>
 		<unl-list-item-label class="animate-fade-left" user user-model="clockin.user" heading="{{ clockin.user.first_name ? clockin.user.first_name +' '+ clockin.user.last_name : clockin.user }}" image="{{clockin.user.profile_image}}" label="From {{clockin.start_at | amCalendar}} until {{clockin.end_at | amCalendar}}" ng-repeat="clockin in clockins | orderBy:'end_at':true">
 			<div class="tools">
 				<span>{{ moment.duration(moment(clockin.end_at).diff(clockin.start_at)).humanize() }}</span>

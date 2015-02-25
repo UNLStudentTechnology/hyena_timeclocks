@@ -9,9 +9,9 @@
  * Controller of the hyenaTimeclocksApp
  */
 angular.module('hyenaTimeclocksApp')
-  .controller('NewCtrl', function ($scope, $rootScope, $routeParams, Notification, TimeclockService) {
+  .controller('NewCtrl', function ($scope, $rootScope, $stateParams, Notification, TimeclockService) {
     //Get the selected group from the route parameters and set it in the scope
-    var groupId = $routeParams.groupId;
+    var groupId = $stateParams.groupId;
     $scope.groupId = $rootScope.currentGroupId = groupId;
 
     //Default timeclock settings

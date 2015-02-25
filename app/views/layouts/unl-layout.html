@@ -1,0 +1,23 @@
+<unl-layout>
+    <div drawer flex vertical layout>
+        <unl-list-group>
+            <unl-list-item-user user="{{currentUser | json}}"></unl-list-item-user>
+            <div ng-show="currentUser">
+                <!-- List groups -->
+                <unl-list-item-header><core-icon icon="social:group"></core-icon> My Groups</unl-list-item-header>
+                <unl-list-item-label ng-attr-active="{{group.id==currentGroupId}}" ng-repeat="group in currentUser.groups | orderBy:'title'" heading="{{group.title}}" link>
+                    <a ng-click="go('/{{group.id}}', 'animate-slide-left'); closeMainDrawer()"><paper-ripple fit></paper-ripple></a>
+                </unl-list-item-label>
+                <!-- End list groups -->
+                <!-- Authenticated user options -->
+                <unl-list-item-header><core-icon icon="settings"></core-icon> Options</unl-list-item-header>
+                <unl-list-item-label heading="Log out" link=""><a ng-href="#" ng-click="logOutCurrentUser()"></a></unl-list-item-label>
+                <!-- End authenticated user options -->
+            </div>
+        </unl-list-group>
+        <footer>
+        </footer>
+    </div>
+    <div main vertical layout ui-view ng-class="pageAnimationClass">
+    </div>
+</unl-layout>

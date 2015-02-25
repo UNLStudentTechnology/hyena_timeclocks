@@ -8,12 +8,12 @@
  * Controller of the hyenaTimeclocksApp
  */
 angular.module('hyenaTimeclocksApp')
-  .controller('SettingsCtrl', function ($scope, $rootScope, $routeParams, TimeclockService) {
+  .controller('SettingsCtrl', function ($scope, $rootScope, $stateParams, TimeclockService) {
   	//Get and set the current group ID
-  	var groupId = $routeParams.groupId;
+  	var groupId = $stateParams.groupId;
   	$scope.groupId = $rootScope.currentGroupId = groupId;
   	//Get timeclock id
-  	var timeclockId = $scope.timeclockId = $routeParams.timeclockId;
+  	var timeclockId = $scope.timeclockId = $stateParams.timeclockId;
 
   	//Get timeclock
   	var timeclock = TimeclockService.get(timeclockId).$asObject();

@@ -9,14 +9,14 @@
  * Controller of the hyenaTimeclocksApp
  */
 angular.module('hyenaTimeclocksApp')
-  .controller('TimeclockCtrl', function ($scope, $rootScope, $routeParams, TimeclockService, Notification) {
+  .controller('TimeclockCtrl', function ($scope, $rootScope, $stateParams, TimeclockService, Notification) {
     $scope.moment = moment;
     $scope.kioskMode = false;
     //Get and set the current group ID
-  	var groupId = $routeParams.groupId;
+  	var groupId = $stateParams.groupId;
   	$scope.groupId = $rootScope.currentGroupId = groupId;
   	//Get timeclock id
-  	var timeclockId = $scope.timeclockId = $routeParams.timeclockId;
+  	var timeclockId = $scope.timeclockId = $stateParams.timeclockId;
 
   	//Get timeclock
   	var timeclock = TimeclockService.get(timeclockId).$asObject();
