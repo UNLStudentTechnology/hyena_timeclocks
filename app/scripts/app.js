@@ -31,7 +31,10 @@ angular
         }
       })
       .state('unl-layout-kiosk', {
-        templateUrl: 'views/layouts/unl-layout-kiosk.html'
+        templateUrl: 'views/layouts/unl-layout-kiosk.html',
+        data: {
+          requireAuth: false
+        }
       })
       //Views
       .state('unl-layout.timeclocks', {

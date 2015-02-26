@@ -50,8 +50,10 @@ angular.module('hyenaTimeclocksApp')
     };
 
     $scope.clockInUser = function() {
+
       TimeclockService.clockIn(timeclockId, $scope.clockinNcard).then(function(response) {
         $scope.clockinNcard = "";
+        $scope.clockinForm.$setPristine();
         Notification.show('You have been clocked in successfully!', 'success');
       }, function(error) {
         console.error(error);
