@@ -9,7 +9,7 @@
  * Service in the hyenaTimeclocksApp.
  */
 angular.module('hyenaTimeclocksApp')
-  .service('TimeclockService', function ($firebase, $q, AppFirebase, UserService) {
+  .service('TimeclockService', function ($firebase, $q, AppFirebase) {
   	var timeclockRef = AppFirebase.getRef();
     
     var TimeclockService =  {
@@ -54,32 +54,22 @@ angular.module('hyenaTimeclocksApp')
       past: function getPastClockins(timeclockId) {
         return $firebase(timeclockRef.child('/past_clockins').orderByChild("timeclock_id").equalTo(timeclockId));
       },
-      clockIn: function clockinUser(timeclockId, nuid) {
-        var deferred = $q.defer();
-        var userId = null;
-        var clockin = null;
-        UserService.validate(nuid).then(function(user) {
-          userId = user.data.users_validated[0]; //Convert NUID to BB
+      /**
+       * Begins the clock in flow. 
+       * @param  string timeclockId
+       * @param  string nuid
+       * @return promise
+       */
+      clockIn: function clockinUser(timeclockId, userId) {
+        //Create our clockin object
+        var clockin = {
+          'start_at': moment().format(),
+          'timeclock_id': timeclockId,
+          'user': userId
+        };
 
-          //Clock out of any existing clockins
-          TimeclockService.clockOutByUser(userId).then(function(response) {
-            //Create our clockin object
-            clockin = {
-              'start_at': moment().format(),
-              'timeclock_id': timeclockId,
-              'user': userId
-            };
-
-            deferred.resolve($firebase(timeclockRef.child('/active_clockins')).$push(clockin));
-          }, function(error) {
-            deferred.reject(error);
-          });
-
-        }, function(error) {
-          deferred.reject(error);
-        });
-
-        return deferred.promise;
+        //Push new clockin
+        return $firebase(timeclockRef.child('/active_clockins')).$push(clockin);
       },
       /**
        * Clock out any active clockins for a particular user
@@ -94,7 +84,7 @@ angular.module('hyenaTimeclocksApp')
             deferred.resolve(response);
           }, function(error) {
             console.error('clockOutByUser Error:', error);
-            deferred.reject(error);
+            deferred.reject(error.message);
           });
         });
         return deferred.promise;
@@ -150,8 +140,9 @@ angular.module('hyenaTimeclocksApp')
 
         var statusObject = $firebase(timeclockRef.child('/active_clockins').orderByChild('user').equalTo(userId)).$asArray();
         statusObject.$loaded().then(function(response) {
-          deferred.resolve(response.length);
+          deferred.resolve(response);
         }, function(error) {
+          console.error('TimeclockService.check()', error);
           deferred.reject('Error getting clockins.');
         });
 
