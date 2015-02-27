@@ -4,6 +4,7 @@
 	<a ng-click="go('/{{groupId}}/timeclock/{{timeclockId}}/kiosk')" title="Enter Kiosk Mode"><unl-icon-button icon="fullscreen"></unl-icon-button></a>
 	<a ng-click="go('/{{groupId}}/timeclock/{{timeclockId}}/settings')" title="Settings"><unl-icon-button icon="settings"></unl-icon-button></a>
 </unl-toolbar>
+<unl-progress indeterminate ng-hide="timeclock" class="animate-fade-out"></unl-progress>
 <div class="content-container">
 	<unl-list-group>
 		<unl-list-item-header>Active Clockins</unl-list-item-header>

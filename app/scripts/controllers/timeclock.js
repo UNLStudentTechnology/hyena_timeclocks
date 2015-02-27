@@ -12,6 +12,7 @@ angular.module('hyenaTimeclocksApp')
   .controller('TimeclockCtrl', function ($scope, $rootScope, $stateParams, UserService, TimeclockService, Notification) {
     $scope.moment = moment;
     var activeUserId = null; //Validated BB username will be put here.
+    $scope.doingClockin = false;
     //Get and set the current group ID
   	var groupId = $stateParams.groupId;
   	$scope.groupId = $rootScope.currentGroupId = groupId;
@@ -64,6 +65,7 @@ angular.module('hyenaTimeclocksApp')
      * at the new one.
      */
     $scope.clockInUser = function() {
+      $scope.doingClockin = true;
       //Validate the NUID and return BB username
       UserService.validate($scope.clockinNcard).then(function(user) {
         activeUserId = user.data.users_validated[0]; //BB username
@@ -100,6 +102,7 @@ angular.module('hyenaTimeclocksApp')
       TimeclockService.clockIn(timeclockId, activeUserId).then(function(response) {
         $scope.clockinNcard = "";
         $scope.clockinForm.$setPristine();
+        $scope.doingClockin = false;
         Notification.show('You have been clocked in successfully!', 'success');
       }, function(error) {
         Notification.show(error.data, 'error');
@@ -109,6 +112,7 @@ angular.module('hyenaTimeclocksApp')
     $scope.doClockout = function() {
       $scope.clockinNcard = "";
       $scope.clockinForm.$setPristine();
+      $scope.doingClockin = false;
       Notification.show('You have been clocked out successfully!', 'success');
     };
   });

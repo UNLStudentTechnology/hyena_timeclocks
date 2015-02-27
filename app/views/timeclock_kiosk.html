@@ -8,6 +8,7 @@
 	<div class="icon-header">
 		<h2 class="align-center">Clock In <span class="subhead">Enter your NUID below</span></h2>
 	</div>
+	<unl-progress indeterminate class="margin-y animate-fade" ng-show="doingClockin"></unl-progress>
 	<form name="clockinForm" ng-submit="clockInUser()" novalidate>
 		<div horizontal layout>
 			<label for="kiosk-nuid" hidden>Enter your NUID</label>

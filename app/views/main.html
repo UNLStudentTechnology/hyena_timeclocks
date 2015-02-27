@@ -3,6 +3,7 @@
   <span flex class="align-center">Timeclocks</span>
   <a ng-click="go('/{{groupId}}/timeclock/new')" ng-show="groupId" title="Create New Timeclock"><unl-icon-button icon="add"></unl-icon-button></a>
 </unl-toolbar>
+<unl-progress indeterminate ng-hide="timeclocks" class="animate-fade-out"></unl-progress>
 <!-- Group List -->
 <div class="content-container" ng-hide="groupId">
   <unl-list-group>

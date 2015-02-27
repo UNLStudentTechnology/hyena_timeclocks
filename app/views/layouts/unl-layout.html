@@ -2,7 +2,7 @@
     <div drawer flex vertical layout>
         <unl-list-group>
             <unl-list-item-user user="{{currentUser | json}}"></unl-list-item-user>
-            <div ng-show="currentUser">
+            <div ng-show="currentUser" class="animate-fade-top">
                 <!-- List groups -->
                 <unl-list-item-header><core-icon icon="social:group"></core-icon> My Groups</unl-list-item-header>
                 <unl-list-item-label ng-attr-active="{{group.id==currentGroupId}}" ng-repeat="group in currentUser.groups | orderBy:'title'" heading="{{group.title}}" link>
