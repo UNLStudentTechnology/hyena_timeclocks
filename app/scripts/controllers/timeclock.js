@@ -72,6 +72,7 @@ angular.module('hyenaTimeclocksApp')
 
         //Check for existing timeclocks
         TimeclockService.check(activeUserId).then(function(active_clockins) {
+          active_clockins = angular.copy(active_clockins); //Copy the array so the underlying clockins don't disappear and throw an error
           //If the user is currently clocked in
           if(active_clockins.length > 0) {
             //Clock out existing clockins

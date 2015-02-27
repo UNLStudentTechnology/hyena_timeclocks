@@ -34,6 +34,11 @@ angular.module('hyenaTimeclocksApp')
     		var timeclocks = timeclockRef.child('timeclocks').orderByChild("group_id").equalTo(groupId).limitToFirst(limit);
         	return $firebase(timeclocks);
     	},
+      /**
+       * Create a new timeclock
+       * @param string timeclock
+       * @param int groupId
+       */
     	add: function addTimeclock(timeclock, groupId) {
     		return $firebase(timeclockRef.child('timeclocks')).$push(timeclock).then(function(response) {
 	          //Add a reference to the group
@@ -41,10 +46,20 @@ angular.module('hyenaTimeclocksApp')
 	          return response;
 	        });
     	},
+      /**
+       * Remove timeclock and its associated clockins
+       * @param  string timeclockId
+       * @return promise
+       */
     	remove: function removeTimeclock(timeclockId) {
   			timeclockId = timeclockId.trim();
+        TimeclockService.removeClockins(timeclockId);
   			return $firebase(timeclockRef.child('/timeclocks/'+timeclockId)).$remove();
   		},
+      removeClockins: function removeClockins(timeclockId) {
+        timeclockId = timeclockId.trim();
+        return $firebase(timeclockRef.child('/past_clockins').orderByChild("timeclock_id").equalTo(timeclockId)).$remove();
+      },
     	clockins: function getClockins(timeclockId) {
         return $firebase(timeclockRef.child('/clockins/'+timeclockId));
     	},
